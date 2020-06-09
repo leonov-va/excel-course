@@ -23,14 +23,14 @@ const jsLoaders = () => {
     options: {
       presets: ['@babel/preset-env']
     }
-  }];
+  }]
 
   if (isDev) {
-    loaders.push('eslink-loader');
+    loaders.push('eslint-loader');
   }
 
   return loaders;
-};
+}
 // End Helpers
 
 module.exports = {
@@ -45,10 +45,10 @@ module.exports = {
     extensions: ['.js'],
     alias: {
       "@": path.resolve(__dirname, 'src'),
-      "@core": path.resolve(__dirname, 'src/core'),
+      "@core": path.resolve(__dirname, 'src/core')
     }
   },
-  devtool: isDev ? 'source-map' : null, // for source-map
+  devtool: isDev ? 'source-map' : false, // for source-map (false or null)
   devServer: {
     port: 3000,
     hot: isDev
