@@ -10,3 +10,4 @@ const excel = new Excel('#app', {
 });
 // console.log('excel: ', excel);
 excel.render();
+// alert(29, '-', 40);

@@ -1,7 +1,7 @@
-@import 'variables';
-@import 'mixins';
+@import "variables"
+@import "mixins"
 
-.excel__table
+.excel__table 
   position: absolute
   top: $header-height + $toolbar-height + $formula-height
   right: 0
@@ -9,23 +9,82 @@
   overflow-x: auto
   padding-bottom: 2px
 
-  .row
+  .row 
     display: flex
+    flex-direction: row
     min-height: 20px
     height: $row-height
 
-  .row-info
+  .row-info 
+    position: relative
     display: flex
     justify-content: center
     align-items: center
     min-width: $info-cell-width
+    height: 100%
+    border: 1px solid $border-color
+    border-top: none
+    background: #f8f9fa
+  
+  .row-data 
+    display: flex
+  
+  .column 
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    background: #f8f9fa
+    min-width: 40px
+    width: $cell-width
+    height: 100%
     border: 1px solid $border-color
     border-top: 0
-    background-color: #f8f9fa
+    border-left: 0
+  
+  .cell 
+    min-width: 40px
+    width: $cell-width
+    height: 100%
+    padding: 5px
+    border: 1px solid #e2e3e3
+    border-top: 0
+    border-left: 0
+    color: #111
+    white-space: nowrap
+    outline: none
 
-  .row-data
-    display: flex
+    &.selected 
+      border: none
+      outline: 2px solid $primary-color
+      z-index: 2
 
+  .col-resize, .row-resize 
+    position: absolute
+    z-index: 99
+    bottom: 0
+    right: 0
+    background: $primary-color
+    opacity: 0
+
+    &:hover,
+    &:active
+      opacity: 1
+    
+  .col-resize 
+    top: 0
+    width: 4px
+
+    &:hover 
+      cursor: col-resize
+
+  .row-resize 
+    left: 0
+    height: 4px
+
+    &:hover 
+      cursor: row-resize
+      
   .column
     display: flex
     justify-content: center
