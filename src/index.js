@@ -11,3 +11,6 @@ const excel = new Excel('#app', {
 // console.log('excel: ', excel);
 excel.render();
 // alert(29, '-', 40);
+// alert(41, '-', 63);
+// alert(64, '-', 82);
+// alert(83, '-', 98);
