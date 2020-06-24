@@ -19,6 +19,7 @@ import {
 import {
   TableSelection
 } from './TableSelection';
+import * as actions from '@/redux/actions';
 
 export class Table extends ExcelComponent {
   static className = 'excel__table';
@@ -32,16 +33,16 @@ export class Table extends ExcelComponent {
   }
 
   toHTML() {
-    return createTable();
+    return createTable(20, this.store.getState());
   }
 
   prepare() {
-    console.log('prepare');
+    // console.log('prepare');
     this.selection = new TableSelection();
   }
 
   init() {
-    console.log('init');
+    // console.log('init');
     super.init();
 
     const $cell = this.$root.find('[data-id="0:0"]');
@@ -55,9 +56,9 @@ export class Table extends ExcelComponent {
       this.selection.current.focus();
     });
 
-    this.$subscribe(state => {
-      console.log('table state', state)
-    })
+    // this.$subscribe(state => {
+    //   console.log('table state', state)
+    // })
   }
 
   selectCell($cell) {
@@ -65,9 +66,18 @@ export class Table extends ExcelComponent {
     this.$emit('table:select', $cell);
   }
 
+  async resizeTable(event) {
+    try {
+      const data = await resizeHandler(this.$root, event);
+      this.$dispatch(actions.tableResize(data));
+    } catch(event) {
+      console.warn('Resize error: ', event.message);
+    }
+  }
+
   onMousedown(event) {
     if (shouldResize(event)) {
-      resizeHandler(this.$root, event);
+      this.resizeTable(event);
     } else if (isCell(event)) {
       const $target = $(event.target);
       if (event.shiftKey) {
