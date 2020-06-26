@@ -1,3 +1,8 @@
+import {
+  defaultStyles
+} from '@/constants';
+import { camelToDashCase } from '@core/utils';
+
 const CODES = {
   A: 65,
   Z: 90
@@ -15,10 +20,13 @@ function getHeight(state, index) {
 }
 
 function toCell(state, row) {
-  return function(_, col) {
+  return function (_, col) {
     const id = `${row}:${col}`;
     const width = getWidth(state.colState, col);
     const data = state.dataState[id];
+    const styles = Object.keys(defaultStyles)
+      .map(key => `${camelToDashCase(key)}: ${defaultStyles[key]}`)
+      .join(';');
 
     return `
       <div 
@@ -27,13 +35,17 @@ function toCell(state, row) {
         data-col="${col}"
         data-id="${id}"
         data-type="cell"
-        style="width: ${width}"
+        style="${styles}; width: ${width}"
       >${data || ''}</div>
     `;
   }
 }
 
-function toColumn({col, index, width}) {
+function toColumn({
+  col,
+  index,
+  width
+}) {
   return `
     <div 
       class="column" 
@@ -71,9 +83,11 @@ function toChar(_, index) {
 }
 
 function withWidthFrom(state) {
-  return function(col, index) {
+  return function (col, index) {
     return {
-      col, index, width: getWidth(state.colState, index)
+      col,
+      index,
+      width: getWidth(state.colState, index)
     }
   }
 }
