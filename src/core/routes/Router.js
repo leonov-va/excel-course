@@ -36,7 +36,7 @@ export class Router {
       ? this.routes.excel 
       : this.routes.dashboard;
 
-      this.page = new Page(ActiveXObject.param);
+      this.page = new Page(ActiveRoute.param);
     
     this.$placeholder.append(this.page.getRoot());
 
