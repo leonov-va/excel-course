@@ -1,6 +1,6 @@
 import {
   $
-} from '@core/dom';
+} from '../dom';
 import {
   ActiveRoute
 } from './ActiveRoute';

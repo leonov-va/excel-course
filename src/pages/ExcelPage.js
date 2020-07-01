@@ -3,7 +3,7 @@ import {
 } from '@core/Page'
 import {
   createStore
-} from '@core/createStore'
+} from '@core/store/createStore'
 import {
   rootReducer
 } from '@/redux/rootReducer'
