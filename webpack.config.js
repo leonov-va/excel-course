@@ -34,7 +34,7 @@ module.exports = {
   entry: ['@babel/polyfill', './index.js'], // учитываем что мы находимся в папке src, поэтому пишем просто ./index.js
   output: {
     filename: filename('js'), // 'bundle.[hash].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'docs')
   },
   resolve: {
     extensions: ['.js'],
